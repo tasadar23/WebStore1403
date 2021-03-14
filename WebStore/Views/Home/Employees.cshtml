@@ -21,18 +21,20 @@
             </tr>
         </thead>
         <tbody>
-            @foreach(var employee in Model)
+            @foreach (var employee in Model)
             {
-            <tr>
-                <td>@employee.Id</td>
-                <td>@employee.LasttName</td>
-                <td>@employee.FirstName</td>
-                <td>@employee.Patronymic</td>
-                <td>@employee.Age</td>
-            </tr>
+                <tr>
+                    <td>@employee.Id</td>
+                    <td>@employee.LasttName</td>
+                    <td>@employee.FirstName</td>
+                    <td>@employee.Patronymic</td>
+                    <td>@employee.Age</td>
+                </tr>
             }
         </tbody>
     </table>
-
+    <p>
+        <a href="~/">Домашняя страница</a>
+    </p>
 </body>
 </html>
