@@ -14,6 +14,8 @@ namespace WebStore.Controllers
 
         public IActionResult Index() => View();
 
-        public IActionResult SecondAction(string id) => Content($"Action with value id:{id}");        
+        public IActionResult SecondAction(string id) => Content($"Action with value id:{id}");    
+        
+        public IActionResult Contact() => View();
     }
 }
