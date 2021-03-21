@@ -1,23 +1,23 @@
 ﻿<ul class="nav navbar-nav collapse navbar-collapse">
-    <li><a href="#" class="active">Home</a></li>
+    <li><a asp-controller="Home" asp-action="Index">Home</a></li>
     <li class="dropdown">
         <a href="#">Shop<i class="fa fa-angle-down"></i></a>
         <ul role="menu" class="sub-menu">
             <li><a href="#">Products</a></li>
-            <li><a href="#">Product Details</a></li>
-            <li><a href="#">Checkout</a></li>
-            <li><a href="#">Cart</a></li>
-            <li><a href="#">Login</a></li>
+            <li><a asp-controller="Home" asp-action="ProductDetails">Детали Продукта</a></li>
+            <li><a asp-controller="Home" asp-action="Checkout">Оформить покупку</a></li>
+            <li><a asp-controller="Home" asp-action="Cart">Корзина</a></li>
+            <li><a asp-controller="Home" asp-action="Login">Вход</a></li>
         </ul>
     </li>
     <li class="dropdown">
         <a href="#">Blog<i class="fa fa-angle-down"></i></a>
         <ul role="menu" class="sub-menu">
-            <li><a href="#">Blog List</a></li>
-            <li><a href="#">Blog Single</a></li>
+            <li><a asp-controller="Home" asp-action="Blog">Блог</a></li>
+            <li><a asp-controller="Home" asp-action="BlogSingle">Блог Single</a></li>
         </ul>
     </li>
-    <li><a href="#">404</a></li>
+    <li><a asp-controller="Home" asp-action="Error404">404</a></li>
     <li><a asp-controller="Employees" asp-action="Index">Сотрудники</a></li>
     <li><a asp-controller="Home" asp-action="Contact">Контакты</a></li>
 </ul>
