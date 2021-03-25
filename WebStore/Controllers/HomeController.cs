@@ -1,10 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using WebStore.Infrastructure.Conventions;
 
 namespace WebStore.Controllers
 {
     //[NonController]
-    [ActionDescription("Главный контролер")]
     public class HomeController : Controller
     {
         //public IActionResult Index()
@@ -12,7 +10,7 @@ namespace WebStore.Controllers
         //    //return Content("Firest Controller Action");
         //    return View();
         //}
-        [ActionDescription("Главное действие")]
+
 
         public IActionResult Index() => View();
 
