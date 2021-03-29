@@ -1,5 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Runtime.Serialization;
 using WebStore.Infrastructure.Conventions;
+using WebStore.Infrastructure.Filters;
 
 namespace WebStore.Controllers
 {
@@ -13,8 +16,10 @@ namespace WebStore.Controllers
         //    return View();
         //}
         [ActionDescription("Главное действие")]
-
+        [AddHeader("Test","Header value")]
         public IActionResult Index() => View();
+
+        public IActionResult Throw() => throw new ApplicationExeption("Test error!");
 
         public IActionResult SecondAction(string id) => Content($"Action with value id:{id}");    
         
@@ -27,5 +32,25 @@ namespace WebStore.Controllers
         public IActionResult Login() => View();
         public IActionResult ProductDetails() => View();
         public IActionResult Shop() => View();
+    }
+
+    [Serializable]
+    internal class ApplicationExeption : Exception
+    {
+        public ApplicationExeption()
+        {
+        }
+
+        public ApplicationExeption(string message) : base(message)
+        {
+        }
+
+        public ApplicationExeption(string message, Exception innerException) : base(message, innerException)
+        {
+        }
+
+        protected ApplicationExeption(SerializationInfo info, StreamingContext context) : base(info, context)
+        {
+        }
     }
 }

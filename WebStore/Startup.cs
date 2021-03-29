@@ -45,6 +45,7 @@ namespace WebStore
             app.UseRouting();
 
             //var greetings = Configuration["Greetings"];
+            //app.Map()
 
             app.UseEndpoints(endpoints =>
             {
