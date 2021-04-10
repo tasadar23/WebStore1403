@@ -13,9 +13,13 @@ namespace WebStore.Infrastructure.Services.Interfaces
 
         Employee Get(int id);
 
+        Employee GetByName(string LastName, string FirstName, string Patronymic);
+
         int Add(Employee employee);
 
-        void Update(Empoyees empoyee);
+        Employee Add(string LastName, string FirstName, string Patronymic, int Age);
+
+        void Update(Employee empoyee);
 
         bool Delete(int id);
     }
