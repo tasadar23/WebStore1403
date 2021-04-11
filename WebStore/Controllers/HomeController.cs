@@ -1,13 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using WebStore.Models;
+using System.Runtime.Serialization;
+using WebStore.Infrastructure.Conventions;
+using WebStore.Infrastructure.Filters;
 
 namespace WebStore.Controllers
 {
     //[NonController]
+    [ActionDescription("Главный контролер")]
     public class HomeController : Controller
     {
         //public IActionResult Index()
@@ -15,21 +15,42 @@ namespace WebStore.Controllers
         //    //return Content("Firest Controller Action");
         //    return View();
         //}
-
-        public static readonly List<Employee> _Employees = new()
-        {
-            new Employee { Id = 1, LasttName = "Иванов", FirstName = "Иван", Patronymic = " Иванович", Age = 23 },
-            new Employee { Id = 1, LasttName = "Петров", FirstName = "Петр", Patronymic = " Петрович", Age = 31 },
-            new Employee { Id = 1, LasttName = "Сидоров", FirstName = "Сидр", Patronymic = " Сидорович", Age = 18 }
-
-        };
+        [ActionDescription("Главное действие")]
+        [AddHeader("Test","Header value")]
         public IActionResult Index() => View();
 
-        public IActionResult SecondAction(string id) => Content($"Action with value id:{id}");
+        public IActionResult Throw() => throw new ApplicationExeption("Test error!");
 
-        public IActionResult Employees()
+        public IActionResult SecondAction(string id) => Content($"Action with value id:{id}");    
+        
+        public IActionResult Contact() => View();
+        public IActionResult Error404() => View();
+        public IActionResult Blog() => View();
+        public IActionResult BlogSingle() => View();
+        public IActionResult Cart() => View();
+        public IActionResult Checkout() => View();
+        public IActionResult Login() => View();
+        public IActionResult ProductDetails() => View();
+        public IActionResult Shop() => View();
+    }
+
+    [Serializable]
+    internal class ApplicationExeption : Exception
+    {
+        public ApplicationExeption()
         {
-            return View(_Employees);
+        }
+
+        public ApplicationExeption(string message) : base(message)
+        {
+        }
+
+        public ApplicationExeption(string message, Exception innerException) : base(message, innerException)
+        {
+        }
+
+        protected ApplicationExeption(SerializationInfo info, StreamingContext context) : base(info, context)
+        {
         }
     }
 }

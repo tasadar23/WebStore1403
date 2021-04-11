@@ -8,19 +8,32 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebStore.Infrastructure.Conventions;
+using WebStore.Infrastructure.Services;
+using WebStore.Infrastructure.Services.Interfaces;
 
 namespace WebStore
 {
-    public class Startup
+    public record Startup(IConfiguration Configuration)
     {
-        public IConfiguration Configuration { get; }
-        public Startup(IConfiguration Configuration)
-        {
-            this.Configuration = Configuration;
-        }
+        //public IConfiguration Configuration { get; }
+        //public Startup(IConfiguration Configuration)
+        //{
+        //    this.Configuration = Configuration;
+        //}
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews().AddRazorRuntimeCompilation();
+            //services.AddMvc();
+            services.AddTransient<IEmployeesData, InMemoryEmployeesData>();
+
+            services
+                .AddControllersWithViews( 
+                mvc => 
+                {
+                    //mvc.Conventions.Add(new ActionDescriptionAttribute("123"));
+                    mvc.Conventions.Add(new ApplicationConvention());
+                })
+                .AddRazorRuntimeCompilation();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env/*, IConfiguration config*/)
@@ -35,6 +48,7 @@ namespace WebStore
             app.UseRouting();
 
             //var greetings = Configuration["Greetings"];
+            //app.Map()
 
             app.UseEndpoints(endpoints =>
             {
