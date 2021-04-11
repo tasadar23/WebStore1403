@@ -31,9 +31,15 @@ namespace WebStore.Controllers
 
             return View(employee);
         }
-        public IActionResult Edit(int Id)
+
+        public IActionResult Create() => View("Edit", new EmployeeViewModel());
+
+        public IActionResult Edit(int? Id)
         {
-            var employee = _EmployeesData.Get(Id);
+            if (Id is null)
+                return View(new EmployeeViewModel());
+
+            var employee = _EmployeesData.Get((int)Id);
 
             if (employee is null)
                 return NotFound();
@@ -60,6 +66,9 @@ namespace WebStore.Controllers
                 Age = model.Age
             };
 
+            if (employee.Id == 0)
+                _EmployeesData.Add(employee);
+            else
             _EmployeesData.Update(employee);
 
             return RedirectToAction("Index");
